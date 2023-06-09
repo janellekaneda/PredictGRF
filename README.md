@@ -2,7 +2,7 @@
 Code for training a physics-informed deep learning model to predict ground reaction loads.
 
 ## Data Used
-Currently uses data walking and ACL injury-relevant tasks from these publications:
+Currently uses data from walking and ACL injury-relevant tasks from these publications:
 
 Scott D. Uhlrich, Julie A. Kolesar, Łukasz Kidziński, Melissa A. Boswell, Amy Silder, Garry E. Gold, Scott L. Delp, Gary S. Beaupre, Personalization improves the biomechanical efficacy of foot progression angle modifications in individuals with medial knee osteoarthritis, Journal of Biomechanics, Volume 144, 2022, 111312, ISSN 0021-9290, https://doi.org/10.1016/j.jbiomech.2022.111312. (https://www.sciencedirect.com/science/article/pii/S0021929022003530)
 
