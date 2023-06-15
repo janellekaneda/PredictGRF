@@ -1,0 +1,65 @@
+Ratio of contact:no contact for total dev is 2.34
+Ratio of contact:no contact for right leg dev is 4.47
+Ratio of contact:no contact for left leg dev is 1.41
+Ratio of contact:no contact for right leg walking dev is 5.0
+Ratio of contact:no contact for left leg walking dev is 1.42
+Ratio of contact:no contact for right leg cutting dev is 3.07
+no. of timesteps with contact for right leg cutting dev: 292
+no. of timesteps without contact: 95
+Ratio of contact:no contact for left leg cutting dev is 0.32
+no. of timesteps with contact for left leg cutting dev: 94
+no. of timesteps without contact: 293
+Ratio of contact:no contact for right leg dj dev is 186.75
+no. of timesteps with contact for right leg dj dev: 747
+no. of timesteps without contact: 4
+Ratio of contact:no contact for left leg dj dev is 124.17
+no. of timesteps with contact for left leg dj dev: 745
+no. of timesteps without contact: 6
+Ratio of contact:no contact for right leg lldj dev is all no contact
+Ratio of contact:no contact for left leg lldj dev is all contact
+Ratio of contact:no contact for right leg rldj dev is all contact
+Ratio of contact:no contact for left leg rldj dev is all no contact
+Ratio of contact:no contact for right leg unant_cut dev is 2.86
+no. of timesteps with contact for right leg unant_cut dev: 309
+no. of timesteps without contact: 108
+Ratio of contact:no contact for left leg unant_cut dev is 0.35
+no. of timesteps with contact for left leg unant_cut dev: 108
+no. of timesteps without contact: 309
+Ratio of contact:no contact for total test is 2.41
+Ratio of contact:no contact for right leg test is 4.82
+Ratio of contact:no contact for left leg test is 1.41
+Ratio of contact:no contact for right leg walking test is 5.13
+Ratio of contact:no contact for left leg walking test is 1.47
+Ratio of contact:no contact for right leg cutting test is all contact
+Ratio of contact:no contact for left leg cutting test is all no contact
+Ratio of contact:no contact for right leg dj test is all contact
+Ratio of contact:no contact for left leg dj test is 129.33
+no. of timesteps with contact for left leg dj test: 776
+no. of timesteps without contact: 6
+Ratio of contact:no contact for right leg lldj test is all no contact
+Ratio of contact:no contact for left leg lldj test is 765.0
+no. of timesteps with contact for left leg lldj test: 765
+no. of timesteps without contact: 1
+Ratio of contact:no contact for right leg rldj test is all contact
+Ratio of contact:no contact for left leg rldj test is all no contact
+Ratio of contact:no contact for right leg unant_cut test is all contact
+Ratio of contact:no contact for left leg unant_cut test is all no contact
+Ratio of contact:no contact for total train is 2.45
+Ratio of contact:no contact for right leg train is 3.86
+Ratio of contact:no contact for left leg train is 1.68
+Ratio of contact:no contact for right leg walking train is 4.13
+Ratio of contact:no contact for left leg walking train is 1.66
+Ratio of contact:no contact for right leg dj train is 364.31
+no. of timesteps with contact for right leg dj train: 5829
+no. of timesteps without contact: 16
+Ratio of contact:no contact for left leg dj train is 72.06
+no. of timesteps with contact for left leg dj train: 5765
+no. of timesteps without contact: 80
+Ratio of contact:no contact for right leg lldj train is all no contact
+Ratio of contact:no contact for left leg lldj train is 1996.67
+no. of timesteps with contact for left leg lldj train: 5990
+no. of timesteps without contact: 3
+Ratio of contact:no contact for right leg rldj train is 1519.5
+no. of timesteps with contact for right leg rldj train: 6078
+no. of timesteps without contact: 4
+Ratio of contact:no contact for left leg rldj train is all no contact

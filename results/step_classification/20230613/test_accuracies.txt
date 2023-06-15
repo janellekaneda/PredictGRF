@@ -1,0 +1,12 @@
+average right leg step classification accuracy for all walking trials: 0.89
+average left leg step classification accuracy for all walking trials: 0.93
+average right leg step classification accuracy for all cutting trials: 0.94
+average left leg step classification accuracy for all cutting trials: 0.96
+average right leg step classification accuracy for all dj trials: 1.0
+average left leg step classification accuracy for all dj trials: 0.99
+average right leg step classification accuracy for all lldj trials: 1.0
+average left leg step classification accuracy for all lldj trials: 1.0
+average right leg step classification accuracy for all rldj trials: 1.0
+average left leg step classification accuracy for all rldj trials: 0.98
+average right leg step classification accuracy for all unant_cut trials: 0.95
+average left leg step classification accuracy for all unant_cut trials: 0.96
