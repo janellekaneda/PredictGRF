@@ -1,0 +1,10 @@
+average right leg step classification accuracy for all cutting trials: 0.9422669067627051
+average left leg step classification accuracy for all cutting trials: 0.9556386805930102
+average right leg step classification accuracy for all dj trials: 1.0
+average left leg step classification accuracy for all dj trials: 0.993061471751403
+average right leg step classification accuracy for all lldj trials: 1.0
+average left leg step classification accuracy for all lldj trials: 0.9989417989417989
+average right leg step classification accuracy for all rldj trials: 1.0
+average left leg step classification accuracy for all rldj trials: 0.9808191808191808
+average right leg step classification accuracy for all unant_cut trials: 0.9496273150408489
+average left leg step classification accuracy for all unant_cut trials: 0.9586142032570605
