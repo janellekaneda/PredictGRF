@@ -1,3 +1,5 @@
+average right leg step classification accuracy for all walking trials: 0.8931079126148707
+average left leg step classification accuracy for all walking trials: 0.9275144150843718
 average right leg step classification accuracy for all cutting trials: 0.9422669067627051
 average left leg step classification accuracy for all cutting trials: 0.9556386805930102
 average right leg step classification accuracy for all dj trials: 1.0
