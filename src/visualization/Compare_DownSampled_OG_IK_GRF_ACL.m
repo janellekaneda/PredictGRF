@@ -19,10 +19,10 @@ import org.opensim.modeling.*;
 resultsdir = fullfile(BASE_DIR, 'data', 'raw', 'ACL_DownSampledFiles');
 
 % Input subject ID.
-subject_id = '010315_1400';
+subject_id = '091614_330';
 
 % Input a trial name for the subject.
-trial_name = 'unant_cut2';
+trial_name = 'LLDJ3';
 
 %% PLOT AND COMPARE
 
@@ -31,7 +31,7 @@ subj_dir = fullfile(resultsdir, subject_id);
 %%
 % % Load and compare IK
 % [ik_data_og, ik_headers_og] = load_sto(subj_dir, ['Trimmed_' trial_name '_JCs_ik_updated.sto']);
-[ik_data_ds, ik_headers_ds] = load_sto(subj_dir, ['Trimmed_' trial_name '_JCs_ik_updated_Fs60.sto']);
+[ik_data_ds, ik_headers_ds] = load_sto(subj_dir, ['Trimmed_' trial_name '_JCs_ik_updated_Fs100.sto']);
 % 
 % figure;
 % plot(ik_data_og)
@@ -48,7 +48,7 @@ grf_filename_og = ['Trimmed_' trial_name '_grf.mot'];
 grf_osimtable = TimeSeriesTable(fullfile(subj_dir, grf_filename_og));
 grf_data_og = osimTableToStruct(grf_osimtable);
 
-[grf_data_ds, grf_headers_ds] = load_mot(subj_dir, ['Trimmed_' trial_name '_grf_Fs60.mot']);
+[grf_data_ds, grf_headers_ds] = load_mot(subj_dir, ['Trimmed_' trial_name '_grf_Fs100.mot']);
 
 % % Compare Fy waveforms from each plate % %
 % Original
