@@ -8,9 +8,11 @@ Scott D. Uhlrich, Julie A. Kolesar, Łukasz Kidziński, Melissa A. Boswell, Amy 
 
 Thompson-Kolesar, Julie A et al. “Age Influences Biomechanical Changes After Participation in an Anterior Cruciate Ligament Injury Prevention Program.” The American journal of sports medicine vol. 46,3 (2018): 598-606. [doi:10.1177/0363546517744313](https://doi.org/10.1177/0363546517744313)
 
-## Links to Data, Models, Plots
+## Links to Data, Models, Results
 Google Drive link to data (raw, interrim, processed): https://drive.google.com/drive/folders/1Sg-vxl2DHTAqr3uPIsaTLzPr4zPA4TA1?usp=sharing
 
 Google Drive link to trained models (and prediction data files): https://drive.google.com/drive/folders/1pV0Nm3zFgTxmDMXBJJeVpT1FW9LL6r8r?usp=sharing
 
-Google Drive link to prediction evaluation plots: https://drive.google.com/drive/folders/1gG1VLT02GMOMigrTNx4gvXiTcU6k1wXH?usp=sharing
+Google Drive link to evaluation metrics for trained models on test set: https://drive.google.com/drive/folders/1yKVEulSRsLMCcuPstZE2MsckQLnOBpaB?usp=sharing
+
+Google Drive link to evaluation plots for trained models on test set: https://drive.google.com/drive/folders/1gG1VLT02GMOMigrTNx4gvXiTcU6k1wXH?usp=sharing
