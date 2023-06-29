@@ -8,7 +8,7 @@ main model datasets after.
 
 EDIT Fri Jan 6 2023: get_gr_features -- fix logic statement in line 395 so only double jump uses both plates
 EDIT Sat Jan 7 2023: get_gr_features -- add lines to fix trials that use abnormal force plate numbers
-
+EDIT Mon Jun 26 2023: get_ground_in_pelvis_transformation_matrices -- take out translation vector part of transformation matrices, since only forces/moments are rotated
 @author: jkaneda
 """
 
@@ -150,9 +150,9 @@ def get_ground_in_pelvis_transformation_matrices(stateTrajectory, model, num_tim
         G_R_P = np.matrix(G_R_P).reshape((3,3)) # put into numpy and reshape
         
         # Extract translation vector from G_T_P.
-        p_GP = G_T_P.p().toString() # put into Python object form
-        p_GP = p_GP.replace('~','') # remove leading '~' char
-        p_GP = np.matrix(p_GP).T # put into numpy and transpose into ((3,1) shape)
+        #p_GP = G_T_P.p().toString() # put into Python object form
+        #p_GP = p_GP.replace('~','') # remove leading '~' char
+        #p_GP = np.matrix(p_GP).T # put into numpy and transpose into ((3,1) shape)
         
         # Find the components that will make up P_T_G, inverse of G_T_P, without having to take the inverse.
         
@@ -160,10 +160,11 @@ def get_ground_in_pelvis_transformation_matrices(stateTrajectory, model, num_tim
         P_R_G = G_R_P.T
         
         # Find the inverse translation vector.
-        p_PG = -1 * np.matmul(P_R_G, p_GP)
+        #p_PG = -1 * np.matmul(P_R_G, p_GP)
         
         # Construct target transformation matrix (P_T_G).
-        P_T_G = np.vstack((np.hstack((P_R_G, p_PG)), [0,0,0,1]))
+        #P_T_G = np.vstack((np.hstack((P_R_G, p_PG)), [0,0,0,1]))
+        P_T_G = np.vstack((np.hstack((P_R_G, np.zeros((3,1)))), [0,0,0,1]))
         
         # Add P_T_G for the current state to the list of matrices.
         transforms.append(P_T_G)
@@ -314,7 +315,7 @@ def get_mag_unitvec(vector_3d):
 def get_ik_features(ikrespath, ikresnames):
     """
     Outputs a numpy array of the inverse kinematics results of interest,
-    with columns in the order of ik_res_names.
+    with columns in the order of ik_res_names (assuming alphabetical).
     
     Inputs:
         ikrespath: (str) full file path to IK results file (.sto, .mot type)
@@ -361,7 +362,7 @@ def get_gr_features(dataset, leg, grpath, bodymass, height):
         height: (scalar, float etc.) height of the subject, in units of m
         
     Returns:
-        grf_r, grf_l, grm_r, grm_: (numpy arrays) normalized ground reaction 
+        grf_r, grf_l, grm_r, grm_l: (numpy arrays) normalized ground reaction 
         loads (size: num_timesteps x 3)
         NOTE: splitting the vector into magnitude and its unit vector is done
         in a separate function
@@ -539,6 +540,48 @@ def get_gr_features(dataset, leg, grpath, bodymass, height):
     grm_l = grm_l / (bodymass * 9.8 * height)
     
     return grf_r, grf_l, grm_r, grm_l
+
+#%% Create total norm GRF output feature.
+
+def get_total_grf(grf_r, grf_l):
+    return grf_r + grf_l # (size: num_timesteps x 3)
+
+#%% Create step classification (contact or no contact) output features.
+
+def get_step_classification(R_mag, L_mag):
+    """
+    Calculates the contact classifications based on magnitudes of GRF for right and left legs.
+    
+    Inputs:
+        R_mag, L_mag: (numpy array) magnitude of GRF for right and left legs (size: num_timesteps x 1 per leg)
+        
+    Returns:
+        R_class, L_class: (numpy array) arrays of 0 and 1 per leg corresponding to contact (1) or no contact (0) (size: num_timesteps x 1 per leg)
+    """
+    R_class = np.where(R_mag > 0, 1, 0)
+    L_class = np.where(L_mag > 0, 1, 0)
+    
+    return np.expand_dims(R_class, axis=-1), np.expand_dims(L_class, axis=-1) 
+
+#%% Create output features for GRF distribution.
+
+def get_force_distribution(grf_r, grf_l):
+    """
+    Calculates the ratio of each leg's force over the total force in each direction (x, y, and z).
+    This creates 6 output features in total (3 per leg).
+    
+    Inputs:
+        grf_r, grf_l: (numpy array) BW normalized GRFs (size: num_timesteps x 3 for each leg)
+        
+    Returns:
+        dist_r, dist_l: (numpy array) ratio of force component to total force for each leg (size: num_timesteps x 3 for each leg)
+
+    """
+    # to get ratio of magnitudes
+    grf_r = np.abs(grf_r)
+    grf_l = np.abs(grf_l)
+    
+    return grf_r / (grf_r + grf_l), grf_l / (grf_r + grf_l)
    
 #%% Create and save whole feature numpy arrays.
 
@@ -547,6 +590,11 @@ def create_feature_matrix(ik_features, com_force_feats, com_pos_feats,
                           lheel_vel_feats, ltoe_vel_feats,
                           grf_r_feats, grf_l_feats,
                           grm_r_feats, grm_l_feats,
+                          grf_total_feats,
+                          step_class_r_feats,
+                          step_class_l_feats,
+                          force_dist_r_feats,
+                          force_dist_l_feats,
                           outpath, save_to_file = True):
     
     """
@@ -555,10 +603,16 @@ def create_feature_matrix(ik_features, com_force_feats, com_pos_feats,
     will have shape: number of time steps x (number of inputs + number of outputs).
     
     Inputs:
+        INPUT FEATURES
         ik_features: (numpy array) matrix of the IK results of interest (size: num_timesteps x len(ikresnames))
         com_force_feats, com_pos_feats: (numpy array) magnitude + 3D unit vector for force acting on and position of the whole-body center of mass
         rheel_vel_feats, rtoe_vel_feats, lheel_vel_feats, ltoe_vel_feats: (numpy array) magnitude + 3D unit vector for right and left heel and toe model body center of masses
+        
+        OUTPUT FEATURES
         grf_r_feats, grf_l_feats, grm_r_feats, grm_l_feats: (numpy array) magnitude + 3D unit vector for right and left GRFs and GRMs (output features)
+        grf_total_feats: (numpy array) magnitude + 3D unit vector for total GRF
+        step_class_feats: (numpy array) contact classifications for each leg
+        force_dist_feats: (numpy array) GRF distribution for each leg (size: num_timesteps x 3, not normalized by mag)
         outpath: (str) full file path (including file name) for saving the concatenated structure to
         save_to_file: (bool) whether or not to save the concatenated structure to file
         
@@ -571,7 +625,12 @@ def create_feature_matrix(ik_features, com_force_feats, com_pos_feats,
                               rheel_vel_feats, rtoe_vel_feats,
                               lheel_vel_feats, ltoe_vel_feats,
                               grf_r_feats, grf_l_feats,
-                              grm_r_feats, grm_l_feats))
+                              grm_r_feats, grm_l_feats,
+                              grf_total_feats,
+                              step_class_r_feats,
+                              step_class_l_feats,
+                              force_dist_r_feats,
+                              force_dist_l_feats))
     
     # Replace NaNs (caused by dividing by zero when making unit vectors) with zeros.
     feature_matrix = np.nan_to_num(feature_matrix)

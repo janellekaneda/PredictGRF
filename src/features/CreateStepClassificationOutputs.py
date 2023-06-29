@@ -14,8 +14,8 @@ import os
 
 #%% PROCESS
 
-#TYPE = 'with_physicsinputs' # toggle
-TYPE = 'without_physicsinputs'
+TYPE = 'with_physicsinputs' # toggle
+#TYPE = 'without_physicsinputs'
 MAX_TIMESTEPS = 67
 MASK_VALUE = 999
 

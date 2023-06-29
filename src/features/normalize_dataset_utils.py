@@ -37,7 +37,7 @@ def calculate_train_mean_std(X_train, Y_train, MASK_VALUE):
     X_train_mask = (X_train != MASK_VALUE)
     Y_train_mask = (Y_train != MASK_VALUE)
     # Find the mean.
-    X_train_means = np.mean(X_train[X_train_mask].reshape(-1,X_train.shape[-1]), axis=0)
+    X_train_means = np.mean(X_train[X_train_mask].reshape(-1,X_train.shape[-1]), axis=0) # shape: (num trials x num timesteps per trial) x num feats
     Y_train_means = np.mean(Y_train[Y_train_mask].reshape(-1,Y_train.shape[-1]), axis=0)
     # Find the std.
     X_train_stds = np.std(X_train[X_train_mask].reshape(-1,X_train.shape[-1]), axis=0)
