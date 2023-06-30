@@ -16,3 +16,6 @@ Google Drive link to trained models (and prediction data files): https://drive.g
 Google Drive link to evaluation metrics for trained models on test set: https://drive.google.com/drive/folders/1yKVEulSRsLMCcuPstZE2MsckQLnOBpaB?usp=sharing
 
 Google Drive link to evaluation plots for trained models on test set: https://drive.google.com/drive/folders/1gG1VLT02GMOMigrTNx4gvXiTcU6k1wXH?usp=sharing
+
+## Experiment Log
+Spreadsheet of experiment details (hyperparameters used, aggregate results, etc.): https://docs.google.com/spreadsheets/d/1rMZZUNP45SyC0SnABJRaUi6fm_oSlg5JRryadiyAijo/edit?usp=sharing
